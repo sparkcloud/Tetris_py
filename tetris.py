@@ -6,7 +6,7 @@ pygame.init()
 
 # set up the display
 screen = pygame.display.set_mode((800,600))
-pygame.display.set_caption("Tetris V 0.1")
+pygame.display.set_caption("Tetris V 0.01")
 
 # Main Loop
 running = True

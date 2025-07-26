@@ -1,25 +1,34 @@
-import pygame
-import random
+import pygame, sys
+from game import Game
 
-# Initialize pygame
 pygame.init()
+WINDOW_WIDTH= 300
+WINDOW_HEIGHT = 600
+DARK_BLUE = (44, 44, 127)
 
-# set up the display
-screen = pygame.display.set_mode((800,600))
-pygame.display.set_caption("Tetris V 0.01")
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Python tetris - Version 0.1")
 
-# Main Loop
-running = True
-while running:
+clock = pygame.time.Clock()
+
+game = Game()
+
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-    
-    # Fill the screen with white
-    screen.fill((255, 255, 255))
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                game.move_left()
+            if event.key == pygame.K_RIGHT:
+                game.move_right()
+            if event.key == pygame.K_DOWN:
+                game.move_down()
 
-    # Update the display
-    pygame.display.flip()
+    #Drawing
+    screen.fill(DARK_BLUE)
+    game.draw(screen)
 
-# Quit Pygame
-pygame.quit()
+    pygame.display.update()
+    clock.tick(60)
